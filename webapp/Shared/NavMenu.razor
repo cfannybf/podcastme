@@ -1,0 +1,27 @@
+﻿<div class="pt-full-width">
+    <nav class="navbar navbar-expand-lg pt-navbar-dark">
+    </nav>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8"><p class="pt-text-large">Podcast ME</p></div>
+        <div class="col-md-4"><p class="mt-5">
+            <span class="pt-text-small mr-5">Explore</span>
+            <span class="pt-text-small mr-5">About</span>
+            <span class="pt-text-small mr-5">Register</span>
+        </p></div>
+    </div>
+</div>
+
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

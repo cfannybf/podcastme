@@ -42,11 +42,30 @@
 }
 
 .pt-bg {
-    background-image: url("../images/bg.png");
     background-repeat: no-repeat;
     background-size: cover;
-    width: 100%;
     min-height: 800px;
+}
+
+.pt-bg-main {
+    background-image: url("../images/bg.png");
+    width: 100%;
+}
+
+.pt-bg-register {
+    background-image: url("../images/bg-register.png");
+}
+
+.pt-bg-register-2 {
+    background-image: url("../images/bg-register-2.png");
+}
+
+.pt-bg-login {
+    background-image: url("../images/bg-login.png");
+}
+
+.pt-bg-login-2 {
+    background-image: url("../images/bg-login-2.png");
 }
 
 .pt-btn-primary {
@@ -61,4 +80,22 @@
 .cta-homepage {
     position: absolute;
     top: 400px;
+}
+
+.pt-gray-page {
+    background-color: #7D7D7B;
+}
+
+.pt-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pt-top-100 {
+    margin-top: 100px;
+}
+
+a:link, a:hover, a:visited, a:active {
+    text-decoration: none;
+    color: white;
 }

@@ -1,0 +1,48 @@
+@page "/me"
+@using webapp.Data
+
+<div class="pt-flex">
+    <SideMenu />
+    <div class="col-md-8 pt-bg pt-bg-explore">
+        <div class="pt-gradient">
+            <div class="container">
+                <p><img src="images/@profile.ProfilePhoto" alt="..." class="rounded float-right" height="200" width="200"></p>
+                <p class="pt-text-large pt-moraine-light">My Profile</p>
+                <p class="pt-text-medium pt-moraine-light">Information</p>
+                <div class="container">
+                    <div class="pt-flex">
+                        <div class="col-md-4"><span class="pt-text-small pt-moraine-light">@profile.Name</span></div>
+                        <div class="col-md-4"><span class="pt-text-small pt-moraine-dark">@profile.Email</span></div>
+                        <div class="col-md-4"><span class="pt-text-small pt-moraine-dark">Joined on: @profile.JoinedOn.ToShortDateString()</span></div>
+                    </div>
+                    <div class="pt-flex">
+                        <div class="col-md-12"><p class="pt-text-mini pt-moraine-dark">@profile.Bio</p></div>
+                    </div>
+                </div>
+                <p class="pt-text-medium pt-moraine-light">My Podcasts</p>
+                <PodcastList ListOfPodcasts=profile.Podcasts/>
+            </div>
+        </div>
+    </div>
+    <PlayMenu />
+</div>
+
+@code
+{
+    private webapp.Data.Profile profile = new webapp.Data.Profile();
+
+    protected override void OnInitialized()
+    {
+        //Mockup data
+        profile.Name = "Someone";
+        profile.Email = "someone@example.com";
+        profile.ProfilePhoto = "avatar.jpg";
+        profile.Bio = "This is my sample bio.";
+        profile.JoinedOn = DateTime.Now.AddDays(-100);
+        profile.Podcasts = new List<Podcast>() {
+            Podcast.MockupPodcast("Something", "Someone", 3),
+            Podcast.MockupPodcast("Something 2", "Someone", 2),
+            Podcast.MockupPodcast("Something 3", "Someone", 1)
+        };
+    }
+}

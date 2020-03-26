@@ -8,21 +8,7 @@
             <div class="container">
                 <p class="pt-text-large pt-moraine-light">Explore</p>
                 <p class="pt-text-medium pt-moraine-light">Popular Podcasts</p>
-                <div class="pt-flex">
-                    <div class="col-md-3"><span class="pt-text-small pt-moraine-dark">Title</span></div>
-                    <div class="col-md-3"><span class="pt-text-small pt-moraine-dark">Author</span></div>
-                    <div class="col-md-3"><span class="pt-text-small pt-moraine-dark">Date</span></div>
-                    <div class="col-md-3"><span class="pt-text-small pt-moraine-dark">Time</span></div>
-                </div>
-                @foreach (var item in popularPodcasts)
-                {
-                    <div class="pt-flex">
-                        <div class="col-md-3"><span class="pt-text-mini pt-moraine-light">@item.Name</span></div>
-                        <div class="col-md-3"><span class="pt-text-mini pt-moraine-dark">@item.Author</span></div>
-                        <div class="col-md-3"><span class="pt-text-mini pt-moraine-dark">@item.UploadedOn</span></div>
-                        <div class="col-md-3"><span class="pt-text-mini pt-moraine-dark">@item.Length</span></div>
-                    </div>
-                }
+                <PodcastList ListOfPodcasts=popularPodcasts/>
             </div>
         </div>
     </div>

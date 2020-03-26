@@ -1,14 +1,8 @@
 @page "/explore"
+@using webapp.Data
 
 <div class="pt-flex">
-    <div class="col-md-2 pt-dark-grey-bg">
-        <div class="container pt-text-small pt-moraine-dark">
-            <p>Home page</p>
-            <p>My profile</p>
-            <p>Playlists</p>
-            <p>Record podcast</p>
-        </div>
-    </div>
+    <SideMenu />
     <div class="col-md-8 pt-bg pt-bg-explore">
         <div class="pt-gradient">
             <div class="container">
@@ -20,37 +14,33 @@
                     <div class="col-md-3"><span class="pt-text-small pt-moraine-dark">Date</span></div>
                     <div class="col-md-3"><span class="pt-text-small pt-moraine-dark">Time</span></div>
                 </div>
-                <div class="pt-flex">
-                    <div class="col-md-3"><span class="pt-text-mini pt-moraine-light">Something</span></div>
-                    <div class="col-md-3"><span class="pt-text-mini pt-moraine-dark">Someone</span></div>
-                    <div class="col-md-3"><span class="pt-text-mini pt-moraine-dark">21.03.2020</span></div>
-                    <div class="col-md-3"><span class="pt-text-mini pt-moraine-dark">01:12:01</span></div>
-                </div>
-                <div class="pt-flex">
-                    <div class="col-md-3"><span class="pt-text-mini pt-moraine-light">Something 2</span></div>
-                    <div class="col-md-3"><span class="pt-text-mini pt-moraine-dark">Someone</span></div>
-                    <div class="col-md-3"><span class="pt-text-mini pt-moraine-dark">23.03.2020</span></div>
-                    <div class="col-md-3"><span class="pt-text-mini pt-moraine-dark">01:03:28</span></div>
-                </div>
-                <div class="pt-flex">
-                    <div class="col-md-3"><span class="pt-text-mini pt-moraine-light">Something 3</span></div>
-                    <div class="col-md-3"><span class="pt-text-mini pt-moraine-dark">Someone</span></div>
-                    <div class="col-md-3"><span class="pt-text-mini pt-moraine-dark">25.03.2020</span></div>
-                    <div class="col-md-3"><span class="pt-text-mini pt-moraine-dark">01:11:31</span></div>
-                </div>
+                @foreach (var item in popularPodcasts)
+                {
+                    <div class="pt-flex">
+                        <div class="col-md-3"><span class="pt-text-mini pt-moraine-light">@item.Name</span></div>
+                        <div class="col-md-3"><span class="pt-text-mini pt-moraine-dark">@item.Author</span></div>
+                        <div class="col-md-3"><span class="pt-text-mini pt-moraine-dark">@item.UploadedOn</span></div>
+                        <div class="col-md-3"><span class="pt-text-mini pt-moraine-dark">@item.Length</span></div>
+                    </div>
+                }
             </div>
         </div>
     </div>
-    <div class="col-md-2 pt-dark-grey-bg">
-        <div class="container">
-            <p class="pt-text-small pt-moraine-light">Currently playing</p>
-            <p class="pt-text-small pt-moraine-dark">Something</p>
-            <p class="pt-text-mini pt-moraine-dark">by Someone</p>
-            <p class="pt-text-mini pt-moraine-dark text-center">00:15:37 / 01:12:01</p>
-            <hr />
-            <p class="pt-text-small pt-moraine-light">Up next</p>
-            <p class="pt-text-mini pt-moraine-dark">Something 2 by Someone</p>
-            <p class="pt-text-mini pt-moraine-dark">Something 3 by Someone</p>
-        </div>
-    </div>
+    <PlayMenu />
 </div>
+
+@code
+{
+    private List<Podcast> popularPodcasts = new List<Podcast>();
+
+    protected override void OnInitialized()
+    {
+        //Mockup data
+        popularPodcasts = new List<Podcast>()
+        {
+            Podcast.MockupPodcast("Something 1", "Someone", 3),
+            Podcast.MockupPodcast("Something 2", "Someone", 2),
+            Podcast.MockupPodcast("Something 3", "Someone", 1)
+        };
+    }
+}

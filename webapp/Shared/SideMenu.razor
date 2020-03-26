@@ -1,0 +1,22 @@
+<div class="col-md-2 pt-dark-grey-bg">
+    <div class="container pt-text-small pt-moraine-dark">
+        <a href="/explore"><p>Home page</p></a>
+        @if (loggedIn == true)
+        {
+            <p>My profile</p>
+            <p>Playlists</p>
+            <p>Record podcast</p>
+        }
+    </div>
+</div>
+
+@code
+{
+    private bool loggedIn = false;
+
+    protected override void OnInitialized()
+    {
+        //Mockup data
+        loggedIn = true;
+    }
+}

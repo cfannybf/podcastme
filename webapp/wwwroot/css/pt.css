@@ -127,7 +127,7 @@
 
 a:link, a:hover, a:visited, a:active {
     text-decoration: none;
-    color: white;
+    color: inherit;
 }
 
 .pt-dark-grey-bg {

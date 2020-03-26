@@ -1,0 +1,32 @@
+@using webapp.Data
+
+<div class="col-md-2 pt-dark-grey-bg">
+    <div class="container">
+        <p class="pt-text-small pt-moraine-light">Currently playing</p>
+        <p class="pt-text-small pt-moraine-dark">@currentlyPlaying.Name</p>
+        <p class="pt-text-mini pt-moraine-dark">by @currentlyPlaying.Author</p>
+        <p class="pt-text-mini pt-moraine-dark text-center">00:15:37 / @currentlyPlaying.Length</p>
+        <hr />
+        <p class="pt-text-small pt-moraine-light">Up next</p>
+        @foreach (var item in upNext)
+        {
+            <p class="pt-text-mini pt-moraine-dark">@item.Name by @item.Author</p>
+        }
+    </div>
+</div>
+
+@code
+{
+    private Podcast currentlyPlaying = new Podcast();
+    private List<Podcast> upNext = new List<Podcast>();
+
+    protected override void OnInitialized()
+    {
+        currentlyPlaying = Podcast.MockupPodcast("Another", "Someone", 1);
+        upNext = new List<Podcast>()
+        {
+            Podcast.MockupPodcast("Another Podcast", "Someone", 6),
+            Podcast.MockupPodcast("Another Podcast 2", "Someone", 7)
+        };
+    }
+}

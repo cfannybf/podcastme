@@ -1,12 +1,20 @@
 using System;
+using System.Text.Json.Serialization;
 
 namespace webapp.Data
 {
     public class Podcast
     {
+        [JsonPropertyName("name")]
         public string Name { get; set; }
+
+        [JsonPropertyName("author")]
         public string Author { get; set; }
+
+        [JsonPropertyName("uploadedOn")]
         public DateTime UploadedOn { get; set; }
+
+        [JsonPropertyName("length")]
         public TimeSpan Length { get; set; }
 
         public static Podcast MockupPodcast(string name, string author, int days)

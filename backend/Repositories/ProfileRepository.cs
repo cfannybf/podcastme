@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace backend.Repositories
 {
-    public class ProfileRepository : IRepository<Profile>
+    public class ProfileRepository : IProfileRepostory
     {
         private readonly ILogger<ProfileRepository> logger;
         private readonly string connectionString;

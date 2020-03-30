@@ -14,9 +14,9 @@ namespace backend.Controllers
     public class ProfileController : ControllerBase
     {
         private readonly ILogger<ProfileController> _logger;
-        private readonly ProfileRepository profileRepository;
+        private readonly IProfileRepostory profileRepository;
 
-        public ProfileController(ILogger<ProfileController> logger, ProfileRepository repository)
+        public ProfileController(ILogger<ProfileController> logger, IProfileRepostory repository)
         {
             _logger = logger;
             profileRepository = repository;

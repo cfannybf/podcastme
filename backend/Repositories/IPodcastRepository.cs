@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using backend.Objects;
 
 namespace backend.Repositories
@@ -5,7 +6,7 @@ namespace backend.Repositories
     public interface IPodcastRepository
     {
         Podcast GetPodcast(string id);
-        Podcast GetPodcastsForProfileId(string profileId);
-        Podcast GetPopularPodcasts();
+        IEnumerable<Podcast> GetPodcastsForProfileId(string profileId);
+        IEnumerable<Podcast> GetPopularPodcasts();
     }
 }

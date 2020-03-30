@@ -45,6 +45,7 @@ namespace webapp.Data
             {
                 var retval = podcasts.Select(x => new Podcast()
                 {
+                    PodcastId = x.PodcastId,
                     Name = x.Name,
                     Author = x.Author,
                     UploadedOn = x.UploadedOn,

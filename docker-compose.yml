@@ -16,14 +16,12 @@ services:
       - '6001'
   podcast-db:
     image: mcr.microsoft.com/mssql/server:2017-CU14-ubuntu
-    ports:
-      - 3306:3306
-    expose:
-      - '3306'
     volumes:
       - podcast-vol:/var/opt/mssql
     environment:
       SA_PASSWORD: "Password1"
       ACCEPT_EULA: "Y"
+    ports:
+      - 1433:1433
 volumes:
   podcast-vol:

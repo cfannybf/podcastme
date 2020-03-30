@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using backend.Objects;
+using backend.Repositories;
 
 namespace backend.Controllers
 {
@@ -13,10 +14,12 @@ namespace backend.Controllers
     public class ProfileController : ControllerBase
     {
         private readonly ILogger<ProfileController> _logger;
+        private readonly ProfileRepository profileRepository;
 
-        public ProfileController(ILogger<ProfileController> logger)
+        public ProfileController(ILogger<ProfileController> logger, ProfileRepository repository)
         {
             _logger = logger;
+            profileRepository = repository;
         }
 
         [HttpGet]
@@ -24,12 +27,8 @@ namespace backend.Controllers
         public Profile GetMyProfile()
         {
             //Mockup data
-            var profile = new Profile();
-            profile.Name = "Someone";
-            profile.Email = "someone@example.com";
-            profile.ProfilePhoto = "avatar.jpg";
-            profile.Bio = "This is my sample bio.";
-            profile.JoinedOn = DateTime.Now.AddDays(-100);
+            var profileId = "4900f294-aeef-4902-bbaf-04f6899e1374";
+            var profile = profileRepository.Get(profileId);
 
             return profile;
         }

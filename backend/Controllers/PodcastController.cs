@@ -46,7 +46,7 @@ namespace backend.Controllers
                 Name = name,
                 Author = author,
                 UploadedOn = date,
-                Length = length
+                Length = length.ToString()
             };
         }
     }

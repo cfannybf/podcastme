@@ -28,7 +28,6 @@ namespace webapp
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<PodcastService>();
         }
 

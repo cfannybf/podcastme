@@ -21,7 +21,7 @@ namespace backend
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseUrls("http://localhost:6001");
+                    webBuilder.UseUrls("http://0.0.0.0:6001");
                 });
     }
 }

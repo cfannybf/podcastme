@@ -21,7 +21,7 @@ namespace webapp.Data
         public async Task<Profile> GetMyProfile()
         {
             //TODO: Session ID
-            var streamTask = client.GetStreamAsync("http://localhost:6001/profile/me");
+            var streamTask = client.GetStreamAsync("http://127.0.0.1:6001/profile/me");
             var profile = await JsonSerializer.DeserializeAsync<DTO.Profile>(await streamTask);
 
             try

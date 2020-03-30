@@ -21,19 +21,19 @@ namespace webapp.Data
         public async Task<Podcast[]> GetPopularPodcasts()
         {
             //TODO: Config this
-            return await GetPodcastsFromEndpoint("http://localhost:6001/podcast/popular");
+            return await GetPodcastsFromEndpoint("http://127.0.0.1:6001/podcast/popular");
         }
 
         public async Task<Podcast[]> GetMyPodcasts()
         {
             //TODO: Session ID
-            return await GetPodcastsFromEndpoint("http://localhost:6001/podcast/me");
+            return await GetPodcastsFromEndpoint("http://127.0.0.1:6001/podcast/me");
         }
 
         public async Task<Podcast[]> GetQueuedPodcasts()
         {
             //TODO: Session ID
-            return await GetPodcastsFromEndpoint("http://localhost:6001/podcast/queue");
+            return await GetPodcastsFromEndpoint("http://127.0.0.1:6001/podcast/queue");
         }
 
         private async Task<Podcast[]> GetPodcastsFromEndpoint(string endpoint)

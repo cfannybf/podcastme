@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
-namespace webapp.Data
+namespace backend.Objects
 {
     public class Profile
     {
@@ -11,6 +12,8 @@ namespace webapp.Data
         public string ProfilePhoto { get; set; }
         public string Bio { get; set; }
         public DateTime JoinedOn { get; set; }
+
+        [JsonIgnore]
         public List<Podcast> Podcasts { get; set; } = new List<Podcast>();
     }
 }

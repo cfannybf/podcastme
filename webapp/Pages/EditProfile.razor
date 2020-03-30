@@ -1,6 +1,7 @@
 @page "/edit-profile"
 @using webapp.Data
 @inject PodcastService podcastService
+@inject ProfileService profileService
 
 <div class="pt-flex">
     <SideMenu />
@@ -46,13 +47,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        //Mockup data
-        profile.Name = "Someone";
-        profile.Email = "someone@example.com";
-        profile.ProfilePhoto = "avatar.jpg";
-        profile.Bio = "This is my sample bio.";
-        profile.JoinedOn = DateTime.Now.AddDays(-100);
-
+        profile = (await profileService.GetMyProfile());
         profile.Podcasts = (await podcastService.GetMyPodcasts()).ToList();
     }
 }

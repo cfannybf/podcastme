@@ -29,6 +29,7 @@ namespace webapp
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<PodcastService>();
+            services.AddSingleton<ProfileService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -21,7 +21,7 @@ namespace backend.Controllers
 
         [HttpGet]
         [Route("Popular")]
-        public IEnumerable<Podcast> Get()
+        public IEnumerable<Podcast> GetPopularPodcasts()
         {
             var popularPodcasts = new List<Podcast>()
             {
@@ -36,7 +36,7 @@ namespace backend.Controllers
         [HttpGet]
         [Route("Me")]
 
-        public IEnumerable<Podcast> MyPodcasts()
+        public IEnumerable<Podcast> GetMyPodcasts()
         {
             var myPodcasts = new List<Podcast>()
             {
@@ -51,7 +51,7 @@ namespace backend.Controllers
         [HttpGet]
         [Route("Queue")]
 
-        public IEnumerable<Podcast> QueuedPodcasts()
+        public IEnumerable<Podcast> GetQueuedPodcasts()
         {
             var queuedPodcasts = new List<Podcast>()
             {

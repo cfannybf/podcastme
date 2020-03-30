@@ -1,4 +1,5 @@
 @using webapp.Data
+@inject PodcastService podcastService
 
 <div class="col-md-2 pt-dark-grey-bg">
     <div class="container">
@@ -20,13 +21,15 @@
     private Podcast currentlyPlaying = new Podcast();
     private List<Podcast> upNext = new List<Podcast>();
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        currentlyPlaying = Podcast.MockupPodcast("Another", "Someone", 1);
-        upNext = new List<Podcast>()
+        var queue = (await podcastService.GetQueuedPodcasts()).ToList();
+        currentlyPlaying = queue.FirstOrDefault();
+
+        if (queue.Count > 1)
         {
-            Podcast.MockupPodcast("Another Podcast", "Someone", 6),
-            Podcast.MockupPodcast("Another Podcast 2", "Someone", 7)
-        };
+            queue.RemoveAt(0);
+            upNext = queue;
+        }
     }
 }

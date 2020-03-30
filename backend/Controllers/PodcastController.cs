@@ -20,16 +20,47 @@ namespace backend.Controllers
         }
 
         [HttpGet]
+        [Route("Popular")]
         public IEnumerable<Podcast> Get()
         {
             var popularPodcasts = new List<Podcast>()
+            {
+                MockupPodcast("Another 1", "Another Author", 3),
+                MockupPodcast("Another 2", "Another Author", 2),
+                MockupPodcast("Another 3", "Another Author", 1)
+            };
+
+            return popularPodcasts;
+        }
+
+        [HttpGet]
+        [Route("Me")]
+
+        public IEnumerable<Podcast> MyPodcasts()
+        {
+            var myPodcasts = new List<Podcast>()
             {
                 MockupPodcast("Something 1", "Someone", 3),
                 MockupPodcast("Something 2", "Someone", 2),
                 MockupPodcast("Something 3", "Someone", 1)
             };
 
-            return popularPodcasts;
+            return myPodcasts;
+        }
+
+        [HttpGet]
+        [Route("Queue")]
+
+        public IEnumerable<Podcast> QueuedPodcasts()
+        {
+            var queuedPodcasts = new List<Podcast>()
+            {
+                MockupPodcast("Queued 1", "Quuu", 3),
+                MockupPodcast("Queued 2", "Quuu", 2),
+                MockupPodcast("Queued 3", "Quuu", 1)
+            };
+
+            return queuedPodcasts;
         }
 
         private Podcast MockupPodcast(string name, string author, int days)

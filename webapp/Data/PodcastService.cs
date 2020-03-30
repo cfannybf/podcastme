@@ -18,9 +18,27 @@ namespace webapp.Data
             this.logger = logger;
         }
 
-        public async Task<Podcast[]> GetPodcasts()
+        public async Task<Podcast[]> GetPopularPodcasts()
         {
-            var streamTask = client.GetStreamAsync("http://localhost:6001/podcast");
+            //TODO: Config this
+            return await GetPodcastsFromEndpoint("http://localhost:6001/podcast/popular");
+        }
+
+        public async Task<Podcast[]> GetMyPodcasts()
+        {
+            //TODO: Session ID
+            return await GetPodcastsFromEndpoint("http://localhost:6001/podcast/me");
+        }
+
+        public async Task<Podcast[]> GetQueuedPodcasts()
+        {
+            //TODO: Session ID
+            return await GetPodcastsFromEndpoint("http://localhost:6001/podcast/queue");
+        }
+
+        private async Task<Podcast[]> GetPodcastsFromEndpoint(string endpoint)
+        {
+            var streamTask = client.GetStreamAsync(endpoint);
             var podcasts = await JsonSerializer.DeserializeAsync<List<DTO.Podcast>>(await streamTask);
 
             try

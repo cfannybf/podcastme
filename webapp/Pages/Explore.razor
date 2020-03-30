@@ -22,7 +22,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var podcasts = await podcastService.GetPodcasts();
+        var podcasts = await podcastService.GetPopularPodcasts();
         popularPodcasts = podcasts.ToList();
     }
 }

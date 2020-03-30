@@ -1,5 +1,6 @@
 @page "/edit-profile"
 @using webapp.Data
+@inject PodcastService podcastService
 
 <div class="pt-flex">
     <SideMenu />
@@ -43,7 +44,7 @@
 {
     private webapp.Data.Profile profile = new webapp.Data.Profile();
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         //Mockup data
         profile.Name = "Someone";
@@ -51,10 +52,7 @@
         profile.ProfilePhoto = "avatar.jpg";
         profile.Bio = "This is my sample bio.";
         profile.JoinedOn = DateTime.Now.AddDays(-100);
-        profile.Podcasts = new List<Podcast>() {
-            Podcast.MockupPodcast("Something", "Someone", 3),
-            Podcast.MockupPodcast("Something 2", "Someone", 2),
-            Podcast.MockupPodcast("Something 3", "Someone", 1)
-        };
+
+        profile.Podcasts = (await podcastService.GetMyPodcasts()).ToList();
     }
 }

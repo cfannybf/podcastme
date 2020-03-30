@@ -10,6 +10,6 @@ namespace webapp.Data
         public string ProfilePhoto { get; set; }
         public string Bio { get; set; }
         public DateTime JoinedOn { get; set; }
-        public List<Podcast> Podcasts { get; set; }
+        public List<Podcast> Podcasts { get; set; } = new List<Podcast>();
     }
 }

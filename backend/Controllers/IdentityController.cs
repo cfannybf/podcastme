@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using backend.Objects;
 using backend.Services;
+using backend.RequestBodies;
 
 namespace backend.Controllers
 {
@@ -33,9 +34,9 @@ namespace backend.Controllers
 
         [HttpPost]
         [Route("Identity/Create")]
-        public IActionResult Create(IdentityInformation information, Profile profile)
+        public IActionResult Create(CreateIdentity createIdentity)
         {
-            if (identityService.RegisterNewIdentity(information, profile, out var identityToken))
+            if (identityService.RegisterNewIdentity(createIdentity.Identity, createIdentity.profile, out var identityToken))
             {
                 return Ok(identityToken);
             }

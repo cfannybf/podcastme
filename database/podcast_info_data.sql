@@ -1,0 +1,9 @@
+﻿INSERT INTO PodcastInfo VALUES ('z5d1c928c-448d-4341-9e71-6728f0f42065', 'Queued 1', 'a5e5b880-0ca2-46c2-baf9-9aeae491d7b9', '2020-03-28 11:23:49.000', '01:00:00');
+INSERT INTO PodcastInfo VALUES ('6c041c0a-08a7-4043-8277-e6b5e7b3bafd', 'Another 3', 'f4a26f8f-1320-4cb9-912a-73bc0e9bc6d6', '2020-03-25 18:28:49.000', '01:00:00');
+INSERT INTO PodcastInfo VALUES ('7221a6b0-b905-47a4-b6c4-08bb4c02a132', 'Something 3', '4900f294-aeef-4902-bbaf-04f6899e1374', '2020-03-25 11:23:49.000', '01:00:00');
+INSERT INTO PodcastInfo VALUES ('aa7ff8e0-ac3d-4fa8-8ac7-66bd3e4d9491', 'Another 1', 'f4a26f8f-1320-4cb9-912a-73bc0e9bc6d6', '2020-03-28 12:28:49.000', '01:00:00');
+INSERT INTO PodcastInfo VALUES ('b19830c4-6eba-4e07-b1e2-d2d88e12d624', 'Something 1', '4900f294-aeef-4902-bbaf-04f6899e1374', '2020-03-28 12:23:49.000', '01:00:00');
+INSERT INTO PodcastInfo VALUES ('e0863670-9d49-49c3-b70a-8658f03094e3', 'Something 2', '4900f294-aeef-4902-bbaf-04f6899e1374', '2020-03-26 13:23:49.000', '01:00:00');
+INSERT INTO PodcastInfo VALUES ('e862ec52-84ae-4837-89d8-a9567fea7a98', 'Queued 3', 'a5e5b880-0ca2-46c2-baf9-9aeae491d7b9', '2020-03-25 12:23:49.000', '01:00:00');
+INSERT INTO PodcastInfo VALUES ('eb638451-c10a-49bc-8826-6bd691efd4aa', 'Queued 2', 'a5e5b880-0ca2-46c2-baf9-9aeae491d7b9', '2020-03-26 10:23:49.000', '01:00:00');
+INSERT INTO PodcastInfo VALUES ('efd99f2e-998a-4227-96b1-915f3cfeb1ce', 'Another 2', 'f4a26f8f-1320-4cb9-912a-73bc0e9bc6d6', '2020-03-26 16:23:49.000', '01:00:00');

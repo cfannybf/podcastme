@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using backend.Objects;
 using backend.Repositories;
+using backend.Services;
 
 namespace backend.Controllers
 {
@@ -15,11 +16,13 @@ namespace backend.Controllers
     {
         private readonly ILogger<PodcastController> _logger;
         private readonly IPodcastRepository podcastRepository;
+        private readonly IIdentityService identityService;
 
-        public PodcastController(ILogger<PodcastController> logger, IPodcastRepository podcastRepository)
+        public PodcastController(ILogger<PodcastController> logger, IPodcastRepository podcastRepository, IIdentityService identityService)
         {
             _logger = logger;
             this.podcastRepository = podcastRepository;
+            this.identityService = identityService;
         }
 
         [HttpGet]
@@ -30,12 +33,16 @@ namespace backend.Controllers
         }
 
         [HttpGet]
-        [Route("Me")]
+        [Route("Me/{token}")]
 
-        public IEnumerable<Podcast> GetMyPodcasts()
+        public IEnumerable<Podcast> GetMyPodcasts(string token)
         {
-            //Mocked data
-            return podcastRepository.GetPodcastsForProfileId("4900f294-aeef-4902-bbaf-04f6899e1374");
+            var identity = identityService.GetIdentityForToken(token);
+            if(identity != null)
+            {
+                return podcastRepository.GetPodcastsForProfileId(identity.ProfileId);
+            }
+            return null;
         }
 
         [HttpGet]

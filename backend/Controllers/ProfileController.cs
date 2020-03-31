@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using backend.Objects;
 using backend.Repositories;
+using backend.Services;
 
 namespace backend.Controllers
 {
@@ -15,22 +16,25 @@ namespace backend.Controllers
     {
         private readonly ILogger<ProfileController> _logger;
         private readonly IProfileRepostory profileRepository;
+        private readonly IIdentityService identityService;
 
-        public ProfileController(ILogger<ProfileController> logger, IProfileRepostory repository)
+        public ProfileController(ILogger<ProfileController> logger, IProfileRepostory repository, IIdentityService identityService)
         {
             _logger = logger;
             profileRepository = repository;
+            this.identityService = identityService;
         }
 
         [HttpGet]
-        [Route("Me")]
-        public Profile GetMyProfile()
+        [Route("Me/{token}")]
+        public Profile GetMyProfile(string token)
         {
-            //Mockup data
-            var profileId = "4900f294-aeef-4902-bbaf-04f6899e1374";
-            var profile = profileRepository.Get(profileId);
-
-            return profile;
+            var identity = identityService.GetIdentityForToken(token);
+            if(identity != null)
+            {
+                return profileRepository.Get(identity.ProfileId);
+            }
+            return null;
         }
     }
 }

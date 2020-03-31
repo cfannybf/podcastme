@@ -6,7 +6,7 @@ namespace backend.Services
 {
     public interface IIdentityService
     {
-        IdentityInformation GetIdentityForToken(IdentityToken token);
+        IdentityInformation GetIdentityForToken(string token);
 
         bool GetIdentityToken(Credentials credentials, out IdentityToken token);
 

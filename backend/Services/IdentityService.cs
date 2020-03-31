@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using backend.Objects;
 using backend.Repositories;
@@ -26,11 +27,13 @@ namespace backend.Services
             this.profileRepostory = profileRepostory;
         }
         
-        public IdentityInformation GetIdentityForToken(IdentityToken token)
+        public IdentityInformation GetIdentityForToken(string token)
         {
-            if (tokenInformation.ContainsKey(token))
+            var identityToken = tokenInformation.Keys.Where(x => x.Token == token).FirstOrDefault();
+            if (identityToken != null && (DateTime.Now - identityToken.CreatedOn).TotalMinutes
+                <= (double)identityToken.ExpiresIn)
             {
-                return tokenInformation[token];
+                return tokenInformation[identityToken];
             }
 
             return null;

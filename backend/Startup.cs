@@ -31,7 +31,7 @@ namespace backend
             services.AddTransient<IProfileRepostory, ProfileRepository>();
             services.AddTransient<IPodcastRepository, PodcastRepository>();
             services.AddTransient<IIdentityRepository, IdentityRepository>();
-            services.AddTransient<IIdentityService, IdentityService>();
+            services.AddSingleton<IIdentityService, IdentityService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

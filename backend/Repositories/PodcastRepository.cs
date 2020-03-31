@@ -63,15 +63,27 @@ namespace backend.Repositories
             }  
         }
 
+        private string GetPodcastAuthorForId(string id)
+        {
+            using (var conn = new SqlConnection(connectionString))
+            {
+                var reader = OpenSqlReader($"SELECT Name FROM Profile WHERE ProfileId='{id}'", conn);
+
+                if (reader.Read())
+                {
+                    return reader.GetString(0);
+                }
+                throw new Exception($"No podcast author with id {id}");
+            }
+        }
+
         private IEnumerable<Podcast> GetPodcastsForQuery(string query)
         {
             try
             {
                 using (var connection = new SqlConnection(connectionString))
                 {
-                    var command = new SqlCommand(query, connection);
-                    command.Connection.Open();
-                    var reader = command.ExecuteReader();
+                    SqlDataReader reader = OpenSqlReader(query, connection);
 
                     var podcasts = new List<Podcast>();
                     if (reader.HasRows)
@@ -82,7 +94,7 @@ namespace backend.Repositories
                             {
                                 PodcastId = reader.GetString(0),
                                 Name = reader.GetString(1),
-                                Author = reader.GetString(2),
+                                Author = GetPodcastAuthorForId(reader.GetString(2)),
                                 UploadedOn = reader.GetDateTime(3),
                                 Length = reader.GetString(4)
                             };
@@ -99,6 +111,14 @@ namespace backend.Repositories
                 logger.LogError($"Couldn't retrieve podcasts. {e.Message}");
                 throw;
             }
+        }
+
+        private static SqlDataReader OpenSqlReader(string query, SqlConnection connection)
+        {
+            var command = new SqlCommand(query, connection);
+            command.Connection.Open();
+            var reader = command.ExecuteReader();
+            return reader;
         }
     }
 }

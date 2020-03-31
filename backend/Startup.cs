@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using backend.Repositories;
+using backend.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +30,8 @@ namespace backend
             services.AddControllers();
             services.AddTransient<IProfileRepostory, ProfileRepository>();
             services.AddTransient<IPodcastRepository, PodcastRepository>();
+            services.AddTransient<IIdentityRepository, IdentityRepository>();
+            services.AddTransient<IIdentityService, IdentityService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

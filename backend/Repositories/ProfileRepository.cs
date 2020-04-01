@@ -59,7 +59,7 @@ namespace backend.Repositories
                             ProfileId = reader.GetString(0),
                             Name = reader.GetString(1),
                             Email = reader.GetString(2),
-                            ProfilePhoto = reader.GetString(3),
+                            ProfilePhoto = reader.IsDBNull(3) ? "" : reader.GetString(3),
                             Bio = reader.GetString(4),
                             JoinedOn = reader.GetDateTime(5)
                         };

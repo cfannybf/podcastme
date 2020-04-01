@@ -32,7 +32,7 @@
 
     private async void loginOnClickAsync()
     {
-        var authenticated = await identityService.AuthenticateAsync(email, password);
+        var authenticated = await identityService.AuthenticateAsync(email, IdentityService.HashPassword(password, email));
         if (authenticated)
         {
             navigationManager.NavigateTo("me");

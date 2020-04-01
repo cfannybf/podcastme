@@ -15,7 +15,7 @@
                     <input type="email" class="form-control text-center mt-3" id="email" placeholder="Your Email" @bind="email">
                     <input type="password" class="form-control text-center mt-3" id="password" placeholder="Password" @bind="password">
                     <p class="pt-red pt-text-mini">@errorText</p>
-                    <button type="submit" class="btn pt-btn-primary pt-white mt-5" @onclick="loginOnClickAsync">Login</button>
+                    <button type="button" class="btn pt-btn-primary pt-white mt-5" @onclick="loginOnClickAsync">Login</button>
                 </div>
                 </form>
                     <span class="pt-white pt-text-small pt-text-box mt-5">Don't have an account? <a href="/register">Register</a></span>
@@ -35,7 +35,7 @@
         var authenticated = await identityService.AuthenticateAsync(email, password);
         if (authenticated)
         {
-            navigationManager.NavigateTo("/me", true);
+            navigationManager.NavigateTo("me");
         }
         else
         {

@@ -12,16 +12,18 @@ namespace webapp.Data
     {
         private readonly HttpClient client = new HttpClient();
         private readonly ILogger<ProfileService> logger;
+        private readonly SessionState state;
 
-        public ProfileService(ILogger<ProfileService> logger)
+        public ProfileService(ILogger<ProfileService> logger, SessionState state)
         {
             this.logger = logger;
+            this.state = state;
         }
 
         public async Task<Profile> GetMyProfile()
         {
-            //TODO: Session ID
-            var streamTask = client.GetStreamAsync("http://127.0.0.1:6001/profile/me");
+            var token = state.Storage["token"];
+            var streamTask = client.GetStreamAsync($"http://127.0.0.1:6001/profile/me/{token}");
             var profile = await JsonSerializer.DeserializeAsync<DTO.Profile>(await streamTask);
 
             try

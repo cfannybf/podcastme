@@ -1,4 +1,7 @@
 @page "/login"
+@using webapp.Data;
+@inject IdentityService identityService;
+@inject NavigationManager navigationManager;
 
 <div class="pt-flex">
     <div class="col-md-6 pt-bg pt-bg-login"></div>
@@ -9,9 +12,10 @@
                 <p class="pt-text-medium pt-text-box pt-white">Login</p>
                 <form>
                 <div class="form-group">
-                    <input type="email" class="form-control text-center mt-3" id="email" placeholder="Your Email">
-                    <input type="password" class="form-control text-center mt-3" id="password" placeholder="Password">
-                    <a href="/me"><button type="submit" class="btn pt-btn-primary pt-white mt-5">Login</button></a>
+                    <input type="email" class="form-control text-center mt-3" id="email" placeholder="Your Email" @bind="email">
+                    <input type="password" class="form-control text-center mt-3" id="password" placeholder="Password" @bind="password">
+                    <p class="pt-red pt-text-mini">@errorText</p>
+                    <button type="submit" class="btn pt-btn-primary pt-white mt-5" @onclick="loginOnClickAsync">Login</button>
                 </div>
                 </form>
                     <span class="pt-white pt-text-small pt-text-box mt-5">Don't have an account? <a href="/register">Register</a></span>
@@ -20,3 +24,22 @@
         </div>
     </div>
 </div>
+
+@code {
+    private string email;
+    private string password;
+    private string errorText = "";
+
+    private async void loginOnClickAsync()
+    {
+        var authenticated = await identityService.AuthenticateAsync(email, password);
+        if (authenticated)
+        {
+            navigationManager.NavigateTo("/me", true);
+        }
+        else
+        {
+            errorText = "Invalid email or password.";
+        }
+    }
+}

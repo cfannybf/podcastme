@@ -12,10 +12,12 @@ namespace webapp.Data
     {
         private readonly HttpClient client = new HttpClient();
         private readonly ILogger<PodcastService> logger;
+        private readonly SessionState state;
 
-        public PodcastService(ILogger<PodcastService> logger)
+        public PodcastService(ILogger<PodcastService> logger, SessionState state)
         {
             this.logger = logger;
+            this.state = state;
         }
 
         public async Task<Podcast[]> GetPopularPodcasts()
@@ -26,8 +28,8 @@ namespace webapp.Data
 
         public async Task<Podcast[]> GetMyPodcasts()
         {
-            //TODO: Session ID
-            return await GetPodcastsFromEndpoint("http://127.0.0.1:6001/podcast/me");
+            var token = state.Storage["token"];
+            return await GetPodcastsFromEndpoint($"http://127.0.0.1:6001/podcast/me/{token}");
         }
 
         public async Task<Podcast[]> GetQueuedPodcasts()
